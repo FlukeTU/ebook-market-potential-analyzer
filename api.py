@@ -1,13 +1,11 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 import joblib
 import json
 
-# -----------------------------
-# Load model and metadata
-# -----------------------------
 MODEL_PATH = "model_artifacts/final_rf_no_badge_pipeline.joblib"
 METADATA_PATH = "model_artifacts/final_app_metadata.json"
 
@@ -18,14 +16,16 @@ with open(METADATA_PATH, "r", encoding="utf-8") as f:
 
 THRESHOLD = 0.60
 
-# -----------------------------
-# FastAPI app
-# -----------------------------
 app = FastAPI(title="E-Book Market Potential API")
 
-# -----------------------------
-# Input schema
-# -----------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ตอน dev/demo ใช้แบบนี้ก่อน
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class PredictionInput(BaseModel):
     stars: float
     reviews: int
@@ -36,9 +36,6 @@ class PredictionInput(BaseModel):
     category_grouped: str
     soldby_grouped: str
 
-# -----------------------------
-# Health check
-# -----------------------------
 @app.get("/")
 def root():
     return {
@@ -47,9 +44,6 @@ def root():
         "threshold": THRESHOLD
     }
 
-# -----------------------------
-# Prediction endpoint
-# -----------------------------
 @app.post("/predict")
 def predict(payload: PredictionInput):
     reviews = max(0, int(payload.reviews))
