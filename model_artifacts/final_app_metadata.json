@@ -1,0 +1,33 @@
+{
+    "project_name": "E-Book Market Potential Analyzer",
+    "final_model_name": "Random Forest (No Badge)",
+    "selected_threshold": 0.6,
+    "target_column": "isBestSeller",
+    "feature_columns": [
+        "stars",
+        "log_reviews",
+        "log_price",
+        "book_age_years_capped",
+        "isKindleUnlimited",
+        "publishedDate_missing",
+        "category_grouped",
+        "soldBy_grouped"
+    ],
+    "numeric_features": [
+        "stars",
+        "log_reviews",
+        "log_price",
+        "book_age_years_capped",
+        "isKindleUnlimited",
+        "publishedDate_missing"
+    ],
+    "categorical_features": [
+        "category_grouped",
+        "soldBy_grouped"
+    ],
+    "notes": [
+        "Badge features were removed after controlled scenario testing.",
+        "Final app model selected for better behavioral consistency in decision-support use.",
+        "This app should be interpreted as an analytical support tool, not a guaranteed business predictor."
+    ]
+}
