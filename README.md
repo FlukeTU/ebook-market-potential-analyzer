@@ -501,6 +501,4 @@ ebook-market-potential-analyzer/
 ---
 
 *โครงการนี้เป็นส่วนหนึ่งของรายวิชา EC683 Solo Project*
-```
-
-อย่าลืมเปลี่ยนชื่อ repo/link GitHub ในส่วน `git clone` ถ้า URL จริงของคุณต่างจากนี้ครับ. ล่าสุดใช้ลิงก์ Lovable และ Render API Docs ที่คุณให้มาแล้ว.        
+     
