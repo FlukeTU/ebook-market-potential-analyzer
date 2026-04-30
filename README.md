@@ -1,7 +1,8 @@
 # 📚 E-Book Market Potential Analyzer
 ### E-Book Decision Support Platform | Machine Learning + Web Application
 
-https://ebook-insight-engine.lovable.app/
+🌐 **Live Web App:** https://ebook-insight-engine.lovable.app/  
+🔗 **Live API Docs:** https://ebook-market-potential-analyzer.onrender.com/docs
 
 [![Python](https://img.shields.io/badge/Python-3.12+-blue?logo=python)](https://python.org)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.6.1-orange?logo=scikitlearn)](https://scikit-learn.org)
@@ -25,6 +26,7 @@ https://ebook-insight-engine.lovable.app/
 - [โมเดลที่ใช้](#-โมเดลที่ใช้)
 - [โมเดลสุดท้าย](#-โมเดลสุดท้าย)
 - [สถาปัตยกรรมระบบ](#-สถาปัตยกรรมระบบ)
+- [Live Prediction API](#-live-prediction-api)
 - [วิธีใช้งาน](#-วิธีใช้งาน)
 - [ตัวอย่างการใช้งาน](#-ตัวอย่างการใช้งาน)
 - [โครงสร้างไฟล์](#-โครงสร้างไฟล์)
@@ -119,8 +121,6 @@ isBestSeller
 - คำนวณอายุหนังสือ
 - จัดกลุ่มหมวดหมู่หนังสือและผู้ขาย
 
----
-
 ### Step 2 — Exploratory Data Analysis
 
 วิเคราะห์ลักษณะสำคัญของข้อมูล เช่น:
@@ -133,8 +133,6 @@ isBestSeller
 
 ผลจาก EDA พบว่า หนังสือที่เป็น Best Seller มีสัดส่วนเพียงประมาณ **1.68%** ของข้อมูลทั้งหมด ทำให้การประเมินโมเดลต้องใช้ตัวชี้วัดที่เหมาะสมมากกว่า accuracy เพียงอย่างเดียว
 
----
-
 ### Step 3 — Predictive Modeling
 
 สร้างและเปรียบเทียบโมเดลหลายรูปแบบ ได้แก่:
@@ -146,13 +144,9 @@ isBestSeller
 
 โดยใช้ train-test split แบบ stratified เพื่อรักษาสัดส่วนของ class target ให้ใกล้เคียงกันทั้งชุด train และ test
 
----
-
 ### Step 4 — Threshold Tuning
 
 เนื่องจากข้อมูลมี class imbalance สูง จึงไม่ได้ใช้ threshold มาตรฐาน 0.50 เพียงอย่างเดียว แต่มีการทดลอง threshold หลายระดับเพื่อหาจุดตัดที่เหมาะสมระหว่าง precision และ recall
-
----
 
 ### Step 5 — Controlled Scenario Testing
 
@@ -249,6 +243,12 @@ Trained Random Forest Model (.joblib)
 ---
 
 ## 🌐 Live Prediction API
+
+API documentation:
+
+```text
+https://ebook-market-potential-analyzer.onrender.com/docs
+```
 
 API endpoint หลักคือ:
 
