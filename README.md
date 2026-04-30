@@ -1,59 +1,81 @@
-# E-Book Market Potential Analyzer
+# 📚 E-Book Market Potential Analyzer
+### E-Book Decision Support Platform | Machine Learning + Web Application
 
-A machine learning-based decision-support application for evaluating the market potential of e-books on online platforms.
+https://your-lovable-app-url-here
 
-This project combines data science, machine learning, backend API deployment, and web application design to transform a trained model into an interactive prototype that can be used for business decision support.
+[![Python](https://img.shields.io/badge/Python-3.12+-blue?logo=python)](https://python.org)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.6.1-orange?logo=scikitlearn)](https://scikit-learn.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)](https://fastapi.tiangolo.com)
+[![Render](https://img.shields.io/badge/Render-Deployment-purple?logo=render)](https://render.com)
+[![Lovable](https://img.shields.io/badge/Lovable-Frontend-ff69b4)](https://lovable.dev)
 
----
-
-## Project Overview
-
-The **E-Book Market Potential Analyzer** estimates whether an e-book has strong commercial potential based on observable market signals such as rating, reviews, price, book age, category, seller type, and Kindle Unlimited status.
-
-The goal of this project is not only to build a predictive model, but also to convert the model into a usable application that can help users compare different business scenarios.
-
-For example, users can explore questions such as:
-
-- What happens if the book price is reduced?
-- Does Kindle Unlimited status improve the estimated market potential?
-- How does the number of reviews affect the predicted result?
-- Which type of book profile appears more commercially promising?
+> **End-to-End Machine Learning Decision-Support App**  
+> ระบบวิเคราะห์ศักยภาพทางการตลาดของหนังสือ E-Book  
+> โดยใช้ Machine Learning เพื่อช่วยประเมินโอกาสการเป็นหนังสือขายดีบนแพลตฟอร์มออนไลน์
 
 ---
 
-## Project Objective
+## 📋 สารบัญ
 
-The objective of this project is to develop a machine learning-based decision-support system for evaluating the market potential of e-books.
-
-Specifically, the project aims to:
-
-1. Analyze key factors associated with e-book market success.
-2. Build and compare machine learning models for bestseller classification.
-3. Handle class imbalance in the target variable.
-4. Select a final model that balances performance, interpretability, and practical usefulness.
-5. Deploy the trained model as a backend API.
-6. Build a user-friendly web interface for scenario-based decision support.
+- [ภาพรวมโครงการ](#-ภาพรวมโครงการ)
+- [วัตถุประสงค์ของโครงการ](#-วัตถุประสงค์ของโครงการ)
+- [ข้อมูลที่ใช้](#-ข้อมูลที่ใช้)
+- [ตัวแปรที่ใช้ในแอป](#-ตัวแปรที่ใช้ในแอป)
+- [ขั้นตอนการวิเคราะห์](#-ขั้นตอนการวิเคราะห์)
+- [โมเดลที่ใช้](#-โมเดลที่ใช้)
+- [โมเดลสุดท้าย](#-โมเดลสุดท้าย)
+- [สถาปัตยกรรมระบบ](#-สถาปัตยกรรมระบบ)
+- [วิธีใช้งาน](#-วิธีใช้งาน)
+- [ตัวอย่างการใช้งาน](#-ตัวอย่างการใช้งาน)
+- [โครงสร้างไฟล์](#-โครงสร้างไฟล์)
+- [ข้อจำกัดของโครงการ](#-ข้อจำกัดของโครงการ)
+- [แนวทางพัฒนาต่อ](#-แนวทางพัฒนาต่อ)
+- [Tech Stack](#-tech-stack)
 
 ---
 
-## Dataset
+## 🎯 ภาพรวมโครงการ
 
-This project uses the **Amazon Kindle Books Dataset 2023**, which contains product-level information about e-books listed on an online platform.
+ตลาดหนังสือดิจิทัลหรือ **E-Book** มีการแข่งขันสูงขึ้นอย่างต่อเนื่องบนแพลตฟอร์มออนไลน์ ผู้บริโภคสามารถเปรียบเทียบราคา คะแนนรีวิว จำนวนรีวิว หมวดหมู่ และข้อมูลผู้ขายก่อนตัดสินใจซื้อได้อย่างสะดวก
 
-The dataset includes variables such as:
+โครงการนี้จึงพัฒนา **E-Book Market Potential Analyzer** ซึ่งเป็นแอปพลิเคชันต้นแบบที่ใช้ Machine Learning เพื่อช่วยประเมินว่า E-Book รายการหนึ่งมีศักยภาพทางการตลาดมากน้อยเพียงใด
 
-- Book title
-- Author
-- Seller
-- Star rating
-- Number of reviews
-- Price
-- Kindle Unlimited status
-- Book category
-- Published date
-- Bestseller status
+ระบบนี้ไม่ได้ออกแบบมาเพื่อทำนายยอดขายแบบรับประกันผลลัพธ์ แต่ทำหน้าที่เป็น **decision-support tool** ที่ช่วยให้ผู้ใช้สามารถทดลองเปรียบเทียบสถานการณ์ เช่น การปรับราคา การเพิ่มจำนวนรีวิว หรือการเข้าร่วม Kindle Unlimited
 
-The target variable used in this project is:
+---
+
+## 🧭 วัตถุประสงค์ของโครงการ
+
+โครงการนี้มีวัตถุประสงค์เพื่อ:
+
+1. วิเคราะห์ปัจจัยที่เกี่ยวข้องกับความสำเร็จของหนังสือ E-Book
+2. สร้างโมเดล Machine Learning เพื่อประเมินโอกาสการเป็น Best Seller
+3. เปรียบเทียบโมเดลหลายรูปแบบ เช่น Dummy Classifier, Logistic Regression และ Random Forest
+4. จัดการปัญหา class imbalance ของตัวแปรเป้าหมาย
+5. เลือกโมเดลสุดท้ายที่เหมาะสมทั้งในด้าน performance และการใช้งานจริง
+6. พัฒนาแอปพลิเคชันที่ผู้ใช้สามารถโต้ตอบกับโมเดลได้จริง
+7. Deploy โมเดลเป็น API และเชื่อมต่อกับ frontend สำหรับการนำเสนอ
+
+---
+
+## 📊 ข้อมูลที่ใช้
+
+โครงการนี้ใช้ข้อมูลจากชุดข้อมูล **Amazon Kindle Books Dataset 2023** ซึ่งเป็นข้อมูลระดับรายการหนังสือ E-Book บนแพลตฟอร์มออนไลน์
+
+ข้อมูลประกอบด้วยตัวแปรสำคัญ เช่น:
+
+- ชื่อหนังสือ
+- ผู้เขียน
+- ผู้ขาย
+- คะแนนดาว
+- จำนวนรีวิว
+- ราคา
+- สถานะ Kindle Unlimited
+- หมวดหมู่หนังสือ
+- วันที่เผยแพร่
+- สถานะ Best Seller
+
+ตัวแปรเป้าหมายหลักของโครงการคือ:
 
 ```text
 isBestSeller
