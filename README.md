@@ -1,76 +1,59 @@
-\# E-Book Market Potential Analyzer
+# E-Book Market Potential Analyzer
 
+A machine learning-based decision-support application for evaluating the market potential of e-books on online platforms.
 
+This project combines data science, machine learning, backend API deployment, and web application design to transform a trained model into an interactive prototype that can be used for business decision support.
 
-This project is a machine learning-based decision-support app for evaluating the market potential of an e-book on an online platform.
+---
 
+## Project Overview
 
+The **E-Book Market Potential Analyzer** estimates whether an e-book has strong commercial potential based on observable market signals such as rating, reviews, price, book age, category, seller type, and Kindle Unlimited status.
 
-\## Project Objective
+The goal of this project is not only to build a predictive model, but also to convert the model into a usable application that can help users compare different business scenarios.
 
-The app helps users estimate whether an e-book has strong commercial potential based on observable features such as:
+For example, users can explore questions such as:
 
-\- star rating
+- What happens if the book price is reduced?
+- Does Kindle Unlimited status improve the estimated market potential?
+- How does the number of reviews affect the predicted result?
+- Which type of book profile appears more commercially promising?
 
-\- number of reviews
+---
 
-\- price
+## Project Objective
 
-\- book age
+The objective of this project is to develop a machine learning-based decision-support system for evaluating the market potential of e-books.
 
-\- Kindle Unlimited status
+Specifically, the project aims to:
 
-\- published date availability
+1. Analyze key factors associated with e-book market success.
+2. Build and compare machine learning models for bestseller classification.
+3. Handle class imbalance in the target variable.
+4. Select a final model that balances performance, interpretability, and practical usefulness.
+5. Deploy the trained model as a backend API.
+6. Build a user-friendly web interface for scenario-based decision support.
 
-\- category
+---
 
-\- seller
+## Dataset
 
+This project uses the **Amazon Kindle Books Dataset 2023**, which contains product-level information about e-books listed on an online platform.
 
+The dataset includes variables such as:
 
-\## Final Model
+- Book title
+- Author
+- Seller
+- Star rating
+- Number of reviews
+- Price
+- Kindle Unlimited status
+- Book category
+- Published date
+- Bestseller status
 
-\- Model: Random Forest (No Badge)
+The target variable used in this project is:
 
-\- Decision Threshold: 0.60
-
-
-
-\## Why this app matters
-
-This app is designed for:
-
-\- independent e-book authors
-
-\- digital publishers
-
-\- online booksellers
-
-\- users interested in e-book market analysis
-
-
-
-It can be used as a decision-support tool to compare scenarios and evaluate market potential.
-
-
-
-\## Files
-
-\- `app.py` → the Gradio app
-
-\- `requirements.txt` → required Python packages
-
-\- `model\_artifacts/final\_rf\_no\_badge\_pipeline.joblib` → trained model
-
-\- `model\_artifacts/final\_app\_metadata.json` → model metadata
-
-
-
-\## How to run
-
-1\. Install dependencies:
-
-&#x20;  ```bash
-
-&#x20;  pip install -r requirements.txt
-
+```text
+isBestSeller
