@@ -8,6 +8,7 @@ https://ebook-insight-engine.lovable.app/
 [![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)](https://fastapi.tiangolo.com)
 [![Render](https://img.shields.io/badge/Render-API-purple?logo=render)](https://render.com)
 [![Lovable](https://img.shields.io/badge/Lovable-Frontend-ff69b4)](https://lovable.dev)
+[![Kaggle](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle)](https://www.kaggle.com/datasets/asaniczka/amazon-kindle-books-dataset-2023-130k-books)
 
 > **End-to-End Machine Learning Decision-Support App**  
 > ระบบวิเคราะห์ศักยภาพทางการตลาดของหนังสือ E-Book  
@@ -100,20 +101,24 @@ Amazon Kindle ทำหน้าที่เป็นแพลตฟอร์ม
 
 ## 📊 ข้อมูลที่ใช้
 
-โครงการนี้ใช้ข้อมูลจากชุดข้อมูล **Amazon Kindle Books Dataset 2023** ซึ่งเป็นข้อมูลระดับรายการหนังสือ E-Book บนแพลตฟอร์มออนไลน์
+โครงการนี้ใช้ข้อมูลจากชุดข้อมูล **Amazon Kindle Books Dataset 2023** บน Kaggle ซึ่งรวบรวมข้อมูลระดับรายการหนังสือ E-Book จากแพลตฟอร์ม Amazon Kindle จำนวนมากกว่า 130,000 รายการ ข้อมูลนี้เหมาะสำหรับการวิเคราะห์ตลาด E-Book เพราะมีทั้งตัวแปรด้านสินค้า ตัวแปรด้านราคา ตัวแปรด้านรีวิว ตัวแปรด้านผู้ขาย และตัวแปรที่สะท้อนสถานะความสำเร็จบนแพลตฟอร์ม
+
+🔗 **แหล่งข้อมูล:** [Amazon Kindle Books Dataset 2023 — Kaggle](https://www.kaggle.com/datasets/asaniczka/amazon-kindle-books-dataset-2023-130k-books)
 
 ข้อมูลประกอบด้วยตัวแปรสำคัญ เช่น:
 
-- ชื่อหนังสือ
-- ผู้เขียน
-- ผู้ขาย
-- คะแนนดาว
-- จำนวนรีวิว
-- ราคา
-- สถานะ Kindle Unlimited
-- หมวดหมู่หนังสือ
-- วันที่เผยแพร่
-- สถานะ Best Seller
+- `asin` — รหัสสินค้าเฉพาะของหนังสือ
+- `title` — ชื่อหนังสือ
+- `author` — ผู้เขียน
+- `soldBy` — ผู้ขายหรือช่องทางจัดจำหน่าย
+- `stars` — คะแนนดาวเฉลี่ย
+- `reviews` — จำนวนรีวิว
+- `price` — ราคาหนังสือ
+- `isKindleUnlimited` — สถานะการอยู่ใน Kindle Unlimited
+- `category_name` — หมวดหมู่หนังสือ
+- `publishedDate` — วันที่เผยแพร่
+- `isBestSeller` — สถานะ Best Seller
+- `isEditorsPick` และ `isGoodReadsChoice` — badge หรือสัญญาณคุณภาพจากแพลตฟอร์ม
 
 ตัวแปรเป้าหมายหลักของโครงการคือ:
 
@@ -121,7 +126,18 @@ Amazon Kindle ทำหน้าที่เป็นแพลตฟอร์ม
 isBestSeller
 ```
 
-ซึ่งใช้แทนสถานะว่าหนังสือรายการนั้นถูกจัดเป็น Best Seller หรือไม่
+ซึ่งใช้เป็น proxy เพื่อระบุว่าหนังสือรายการนั้นถูกจัดเป็น Best Seller หรือไม่ โดยต้องตีความอย่างระมัดระวัง เนื่องจากตัวแปรนี้ไม่ได้เท่ากับยอดขายจริง รายได้จริง หรือกำไรของหนังสือโดยตรง แต่เป็นตัวแทนสถานะความสำเร็จที่ปรากฏบนแพลตฟอร์ม
+
+### เหตุผลที่เลือกใช้ข้อมูลชุดนี้
+
+ข้อมูลชุดนี้เหมาะกับโครงการนี้ด้วยเหตุผลสำคัญ 4 ประการ:
+
+1. **เป็นข้อมูลระดับสินค้า** — สามารถวิเคราะห์ความแตกต่างของหนังสือแต่ละรายการได้
+2. **มีตัวแปรเชิงตลาดครบถ้วน** — เช่น ราคา รีวิว หมวดหมู่ ผู้ขาย และ Kindle Unlimited
+3. **เชื่อมโยงกับ Industrial Organization ได้ดี** — เพราะสะท้อนการแข่งขันบนแพลตฟอร์ม สัญญาณคุณภาพ และ product differentiation
+4. **เหมาะกับการสร้างแอป decision-support** — เพราะมีตัวแปรที่ผู้ใช้สามารถเข้าใจและทดลองปรับ scenario ได้
+
+> หมายเหตุ: ข้อมูลนี้เป็นข้อมูลสาธารณะจาก Kaggle ใช้เพื่อวัตถุประสงค์ทางการศึกษา การวิเคราะห์ และการพัฒนา prototype เท่านั้น
 
 ---
 
